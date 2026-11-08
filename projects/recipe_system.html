@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f8f5f2;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #f0e6d8;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #6a513c;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .navbar-links a {
+            color: #6a513c;
+            margin-left: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .navbar-links a:hover {
+            color: #b07d54;
+            transform: translateY(-2px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(106, 81, 60, 0.7), rgba(106, 81, 60, 0.7)), url('hero-bg.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-family: 'Brush Script MT', cursive;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #f0e6d8;
+            color: #6a513c;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            background: #e6d5c3;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        /* FEATURES */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 40px 5%;
+            background: #e6d5c3;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            text-align: center;
+            color: #6a513c;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* SECTION TITLES */
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #6a513c;
+            margin: 50px 0 30px;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        /* CONTAINER */
+        .container {
+            padding: 0 5% 50px;
+        }
+
+        /* CARD STYLES */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            color: #6a513c;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            color: #777;
+            font-size: 16px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #6a513c;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .navbar-links a {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <a href="{% url 'home' %}" class="logo">Recipe System</a>
+    <div class="navbar-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'category_list' %}">Categories</a>
+        <a href="{% url 'recipe_list' %}">Recipes</a>
+        <a href="{% url 'ingredient_list' %}">Ingredients</a>
+        <a href="{% url 'create_recipe' %}">Add Recipe</a>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>Healthy Food Recipes</h1>
+    <p>Discover delicious recipes, explore categories, and find the perfect ingredients for your next meal</p>
+    <a href="{% url 'recipe_list' %}" class="btn">Browse Recipes</a>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+    <div class="feature-item">
+        <div class="feature-icon">❤️</div>
+        <div>Nutrition</div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon">🥚</div>
+        <div>Preparation</div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon">🍲</div>
+        <div>Easy Cook</div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon">🥗</div>
+        <div>Delicious</div>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Recipe System. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
